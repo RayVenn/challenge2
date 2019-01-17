@@ -40,7 +40,7 @@ def find_pair(input_file, balance):
     return item1, item2
 
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) < 3:
         raise Exception('Need 2 arguments: {} <txt_item_file> <balance_value>'.format(__file__))
     PAIRS = find_pair(sys.argv[1], int(sys.argv[2]))
@@ -49,3 +49,7 @@ if __name__ == '__main__':
         PAIRS[0][1],
         PAIRS[1][0],
         PAIRS[1][1]))
+
+
+if __name__ == '__main__':
+    main()
