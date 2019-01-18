@@ -19,7 +19,7 @@ def read_input_file(input_file):
 def find_pair(item_list, balance):
     """
     Find pair with input txt file and balance we have
-    :param input_file: file name of input text file
+    :param item_list: list of tuple with name and price from input text file
     :param balance: balance value we have for the gifts
     :return: the most valuable dual items less than balance
     """
