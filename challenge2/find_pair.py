@@ -16,26 +16,26 @@ def read_input_file(input_file):
     return item_list
 
 
-def find_pair(input_file, balance):
+def find_pair(item_list, balance):
     """
     Find pair with input txt file and balance we have
     :param input_file: file name of input text file
     :param balance: balance value we have for the gifts
     :return: the most valuable dual items less than balance
     """
-    item_list = read_input_file(input_file)
     i, j = 0, len(item_list)-1
     item1, item2 = None, None
 
-    while i < j:
-        sum_of_gift = item_list[i][1] + item_list[j][1]
+    if j >= 2:
+        while i < j:
+            sum_of_gift = item_list[i][1] + item_list[j][1]
 
-        if balance < sum_of_gift:
-            j -= 1
-        elif balance >= sum_of_gift:
-            if not item1 or sum_of_gift > item1[1] + item2[1]:
-                item1, item2 = item_list[i], item_list[j]
-            i += 1
+            if balance < sum_of_gift:
+                j -= 1
+            elif balance >= sum_of_gift:
+                if not item1 or sum_of_gift > item1[1] + item2[1]:
+                    item1, item2 = item_list[i], item_list[j]
+                i += 1
 
     return item1, item2
 
@@ -43,12 +43,13 @@ def find_pair(input_file, balance):
 def main():
     if len(sys.argv) < 3:
         raise Exception('Need 2 arguments: {} <txt_item_file> <balance_value>'.format(__file__))
-    PAIRS = find_pair(sys.argv[1], int(sys.argv[2]))
-    if not PAIRS[0]:
+    item_list = read_input_file(sys.argv[1])
+    pairs = find_pair(item_list, int(sys.argv[2]))
+    if not pairs[0]:
         print('Not Possible')
     else:
         print('{} {}, {} {}'.format(
-            PAIRS[0][0], PAIRS[0][1], PAIRS[1][0], PAIRS[1][1]))
+            pairs[0][0], pairs[0][1], pairs[1][0], pairs[1][1]))
 
 
 if __name__ == '__main__':
